@@ -13,19 +13,27 @@ namespace Uebung_3
     {
 
 
+
         static void Main(string[] args)
 
         {
+
             //Messagebox funktioniert noch nicht
-            ////MessageBox.Show("Hallo");
-            //MessageBoxResult result;
-            //result = MessageBox.Show("Sind die bereit für die Berechnungen?", "WichtigeFrage",
-
-            //   MessageBoxButton.YesNo,
-            //   MessageBoxImage.Question
-            //    );
 
 
+
+
+
+            string message = "Wollen Sie mit der Berechnugn fortfahren?";
+            string title = "Frage";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+
+            if (result == DialogResult.No) 
+            {
+                System.Windows.Application.Exit();
+            }
+            //hier komm ich jetzt nicht mehr weiter wie schließt man das Programm bei drücken von nein?
             //Schreiben Sie eine Eingabe für die Kantenlängen a und b
             Console.WriteLine("Bitte geben Sie Kantenlänge a (Breite) in mm an");
             string eingabeA;
