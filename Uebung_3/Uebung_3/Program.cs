@@ -3,22 +3,37 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Uebung_3
 {
     class Program
     {
+
+
         static void Main(string[] args)
+
         {
-            //  Schreiben Sie eine Eingabe für die Kantenlängen a und b
-            Console.WriteLine("Bitte geben Sie Kantenlänge a (Breite) an");
+            //Messagebox funktioniert noch nicht
+            ////MessageBox.Show("Hallo");
+            //MessageBoxResult result;
+            //result = MessageBox.Show("Sind die bereit für die Berechnungen?", "WichtigeFrage",
+
+            //   MessageBoxButton.YesNo,
+            //   MessageBoxImage.Question
+            //    );
+
+
+            //Schreiben Sie eine Eingabe für die Kantenlängen a und b
+            Console.WriteLine("Bitte geben Sie Kantenlänge a (Breite) in mm an");
             string eingabeA;
             eingabeA = Console.ReadLine();
             double a;
             a = Convert.ToDouble(eingabeA);
 
-            Console.WriteLine("Bitte geben Sie Kantenlänge b (Höhe) an");
+            Console.WriteLine("Bitte geben Sie Kantenlänge b (Höhe) in mm an");
             string eingabeB;
             eingabeB = Console.ReadLine();
             double b;
@@ -26,19 +41,16 @@ namespace Uebung_3
 
 
             //• Berechnen Sie die Fläche
-            double flaeche;
-            flaeche = a * b;
+            double flaeche = Flaechenberechnung(a, b);
             Console.WriteLine("Die FLäche beträgt: " + flaeche + " qm");
 
-            
             //• Berechnen Sie den Flächenschwerpunkt des Profils.
-            double schwerpunktX;
-            double schwerpunktY;
+            Schwerpunktberechnung(a, b);
+            
 
-            schwerpunktX = a / 2;
-            schwerpunktY = b / 2;
+            
 
-            Console.WriteLine("Schwerpunkt (X/Y): (" + schwerpunktX + "/" + schwerpunktY + ")");
+           
 
             //• Berechnen Sie die Flächenträgheitsmomente des Profils
             double ix;
@@ -52,6 +64,23 @@ namespace Uebung_3
 
 
             Console.ReadKey();
+
+
+
         }
+        public static double Flaechenberechnung(double a, double b)
+        {
+            double flaeche;
+            flaeche = a * b;            
+            return flaeche;
+        }
+
+        public static void Schwerpunktberechnung(double a, double b)
+        {
+            double schwerpunktX = a / 2;
+            double schwerpunktY = b / 2;
+            Console.WriteLine("Schwerpunkt (X/Y): (" + schwerpunktX + "/" + schwerpunktY + ")");           
+        }
+
     }
 }
