@@ -1,4 +1,5 @@
 ﻿//test bennet
+//test rune
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Uebung_3
 
 
 
-            string message = "Wollen Sie mit der Berechnugn fortfahren?";
+            string message = "Wollen Sie mit der Berechnung fortfahren?";
             string title = "Frage";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
