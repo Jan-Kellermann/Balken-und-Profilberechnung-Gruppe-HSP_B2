@@ -60,14 +60,13 @@ namespace Uebung_3
             Console.WriteLine("Die FLäche beträgt: " + flaeche + " qm");
 
             //• Berechnen Sie den Flächenschwerpunkt des Profils.
-            Schwerpunktberechnung(a, b);
+            Console.WriteLine("Schwerpunkt in bezug auf die Obere linke Ecke: " + SRechteck(a) + "/" + SRechteck(b)); //Schwerkupnkberechnung des rechteckes
 
             //• Berechnen Sie die Flächenträgheitsmomente des Profils
-            double ix;
-            double iy;
-
-            ix = a * Math.Pow(b, 3) / 12;
-            iy = b * Math.Pow(a, 3) / 12;
+            double ix = IRechteck(a,b);
+            double iy = IRechteck(b,a);
+                            
+            
 
             Console.WriteLine("Ix: " + ix + " mm^4");
             Console.WriteLine("Iy: " + iy + " mm^4");
@@ -77,7 +76,7 @@ namespace Uebung_3
              break;
 
                 case 2:
-                    
+                    Console.Clear();
                     double bBreite;
                     double bBreiteRip;
                     double hHöhe;
@@ -89,54 +88,50 @@ namespace Uebung_3
                     {
                         Console.Clear();
 
-                        Console.WriteLine("Hier kannst du einen T-Träger berechnen:");
+                        Console.WriteLine("Hier kannst du einen T-Träger berechnen (eingaben in mm):");
 
-                        Console.WriteLine("Breite B: "); bBreite = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Gurtbreite B: "); 
+                        bBreite = Convert.ToDouble(Console.ReadLine());
 
-                        Console.WriteLine("Rippenbreite b (die Rippe muss schmaler als die Gesamtbreite sein): "); bBreiteRip = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Rippenbreite b (die Rippe muss schmaler als die Gesamtbreite sein): "); 
+                        bBreiteRip = Convert.ToDouble(Console.ReadLine());
 
-                        Console.WriteLine("Höhe H: "); hHöhe = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Gurthöhe H: "); 
+                        hHöhe = Convert.ToDouble(Console.ReadLine());
 
-                        Console.WriteLine("Rippenhöhe h (die Rippe muss flacher als die Gesamthöhe sein): "); hHöheRip = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Rippenhöhe h (die Rippe muss flacher als die Gesamthöhe sein): "); 
+                        hHöheRip = Convert.ToDouble(Console.ReadLine());
 
                         Console.WriteLine("Länge L (die Rippe muss kürzer als die Gesamthöhe sein):"); lLänge = Convert.ToDouble(Console.ReadLine());
 
-                        if (hHöhe < hHöheRip && bBreite < bBreiteRip)
+                        if (bBreite <= 0 || bBreiteRip <= 0 || hHöhe <= 0 ||  hHöheRip <= 0 || lLänge <= 0)
                         {
-                            Console.WriteLine("Überprüfe deine Eingabe, die Rippe muss flacher als die Gesamthöhe sein, und die Rippe muss schmaler als die Gesamtbreite sein, bestätige mit einer Taste");
-
-                            Console.ReadKey();
+                            Console.WriteLine("die eingaben sollten größer null sein");
                         }
-
+                       
                         else if (bBreite < bBreiteRip)
                         {
-                            Console.WriteLine("Überprüfe deine Eingabe, die Rippe muss schmaler als die Gesamtbreite sein, bestätige mit einer Taste");
+                            Console.WriteLine("Überprüfe deine Eingabe, die Rippe muss schmaler als die Gurttbreite sein, bestätige mit einer Taste");
 
                             Console.ReadKey();
                         }
 
-                        else if (hHöhe < hHöheRip)
-                        {
-                            Console.WriteLine("Überprüfe deine Eingabe, die Rippe muss kürzer als die Gesamthöhe sein, bestätige mit einer Taste");
-
-                            Console.ReadKey();
-                        }
-
-                        else if (lLänge < 0)
-                        {
-                            Console.WriteLine("Überprüfe deine Eingabe, der Träger muss länger Null sein, bestätige mit einer Taste");
-
-                            Console.ReadKey();
-                        }
-
+                        
                     }
-                    while (bBreite < bBreiteRip || hHöhe < hHöheRip || lLänge < 0);
+                    while (bBreite < bBreiteRip || bBreite <= 0 || bBreiteRip <= 0 || hHöhe <= 0 || hHöheRip <= 0 || lLänge <= 0);
 
-                        double Fläche = Rechteck(bBreite, hHöhe) + Rechteck(bBreiteRip, hHöheRip);
-                        double Volumen = Fläche * lLänge;
+                    double Fläche = Rechteck(bBreite, hHöhe) + Rechteck(bBreiteRip, hHöheRip);
+                    double Volumen = Fläche * lLänge;
+                    double SchwerpunktX = (Rechteck(bBreite, hHöhe)* SRechteck(bBreite) + Rechteck(bBreiteRip, hHöheRip) * SRechteck(bBreiteRip)) / Fläche;
+                    double SchwerpunktY = -1*((Rechteck(bBreite, hHöhe) * SRechteck(hHöhe) + Rechteck(bBreiteRip, hHöheRip) * SRechteck(hHöheRip)) / Fläche);
+                    double SchwerpunktZ = lLänge / 2;
+                    double Iy = (IRechteck(bBreite, hHöhe) + IRechteck(bBreiteRip, hHöheRip)) /12;
+                    
 
-                        Console.WriteLine("Die Fläche beträgt: " + Fläche);
-                        Console.WriteLine("Das Volumen beträgt: " + Volumen);
+                        Console.WriteLine("Die Fläche beträgt: " + Fläche +" mm^2");
+                        Console.WriteLine("Das Volumen beträgt: " + Volumen + " mm^3");
+                        Console.WriteLine("Schwerpunkt in bezug auf Ecke oben links: " + SchwerpunktX + " mm" + "/" + SchwerpunktY + " mm" + "/" + SchwerpunktZ + " mm");
+                        Console.WriteLine("Flächenträgheitsmomente: Iy=" + Iy+ " mm^4");
 
                     //Komentare und weitere berechnungen folgen
 
@@ -162,14 +157,18 @@ namespace Uebung_3
             return flaeche;
         }
 
-        public static void Schwerpunktberechnung(double a, double b)
+        public static double SRechteck(double seitenlänge)
         {
-            double schwerpunktX = a / 2;
-            double schwerpunktY = b / 2;
-            Console.WriteLine("Schwerpunkt (X/Y): (" + schwerpunktX + "/" + schwerpunktY + ")");
+            double schwerpunkt = seitenlänge / 2;
+            return schwerpunkt;
+          
         }
 
-
+        public static double IRechteck (double a, double b)
+        {
+           double I = a * Math.Pow(b, 3) / 12;
+            return I;
+        }
 
 
 
