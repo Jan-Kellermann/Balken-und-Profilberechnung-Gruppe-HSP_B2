@@ -31,10 +31,43 @@ namespace Uebung_3
             DialogResult result = MessageBox.Show(message, title, buttons);
 
 
-            Console.WriteLine("Für die berechnung eines einfachen Balkens 1 drücken, für einen T-Träger 2, für einen Kasten 3");
 
-            int nummer = Convert.ToInt32(Console.ReadLine());
-               int caseSwitch =  nummer;
+
+
+            string Eingabe;
+            int EingabeNeu;
+            do //Prüfung der Eingabe auf Plausbilität
+            {
+                Console.Clear();
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Für die Berechnung eines einfachen Balkens 1 drücken, für einen T-Träger 2, für einen Kasten 3");
+
+                    Eingabe = Console.ReadLine();
+
+                    if (PrüfungZahl(Eingabe) == false) //Prüfung mit der Methode TryParse in Unterprogramm
+                    {
+                        Console.WriteLine("Leider hast du keine Zahl Eingegeben.(bestätige mit einer Taste)");
+                        Console.ReadKey();
+                    }
+
+
+                }
+                while (PrüfungZahl(Eingabe) == false);
+
+                EingabeNeu = Convert.ToInt32(Eingabe); //Eingabe ist eine Zhal und kann fehlerfrei in eine Integer convertiert werden 
+
+                if (EingabeNeu > 4)
+                {
+                    Console.WriteLine("Auswahl steht nicht zur Verfügung. (bestätige mit einer Taste)");
+                    Console.ReadKey();
+                }
+            }
+            while ( EingabeNeu > 4); //Prüfung ob die Eingabe der Möglichen Auswahl entspricht
+
+            int nummer = EingabeNeu;
+            int caseSwitch = nummer;
 
             switch(caseSwitch)
             {
@@ -82,43 +115,64 @@ namespace Uebung_3
                     double hHöhe;
                     double hHöheRip;
                     double lLänge;
-
+                    string bBreiteE;
+                    string bBreiteRipE;
+                    string hHöheE;
+                    string hHöheRipE;
+                    string lLängeE;
                     do
-
                     {
                         Console.Clear();
+                        do
 
-                        Console.WriteLine("Hier kannst du einen T-Träger berechnen (eingaben in mm):");
-
-                        Console.WriteLine("Gurtbreite B: "); 
-                        bBreite = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Rippenbreite b (die Rippe muss schmaler als die Gesamtbreite sein): "); 
-                        bBreiteRip = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Gurthöhe H: "); 
-                        hHöhe = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Rippenhöhe h (die Rippe muss flacher als die Gesamthöhe sein): "); 
-                        hHöheRip = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Länge L (die Rippe muss kürzer als die Gesamthöhe sein):"); lLänge = Convert.ToDouble(Console.ReadLine());
-
-                        if (bBreite <= 0 || bBreiteRip <= 0 || hHöhe <= 0 ||  hHöheRip <= 0 || lLänge <= 0)
                         {
-                            Console.WriteLine("die eingaben sollten größer null sein");
+                            Console.Clear();
+
+                            Console.WriteLine("Hier kannst du einen T-Träger berechnen (eingaben in mm):");
+
+                            Console.WriteLine("Gurtbreite B: ");
+                            bBreiteE = Console.ReadLine();
+
+                            Console.WriteLine("Rippenbreite b (die Rippe muss schmaler als die Gesamtbreite sein): ");
+                            bBreiteRipE = Console.ReadLine();
+
+                            Console.WriteLine("Gurthöhe H: ");
+                            hHöheE = Console.ReadLine();
+
+                            Console.WriteLine("Rippenhöhe h (die Rippe muss flacher als die Gesamthöhe sein): ");
+                            hHöheRipE = Console.ReadLine();
+
+                            Console.WriteLine("Länge L (die Rippe muss kürzer als die Gesamthöhe sein):");
+                            lLängeE = Console.ReadLine();
+
+                            if ((PrüfungZahl(bBreiteE) || PrüfungZahl(bBreiteRipE) || PrüfungZahl(hHöheE) || PrüfungZahl(hHöheRipE) || PrüfungZahl(lLängeE)) == false)
+                            {
+                                Console.WriteLine("Eigabe ist keine Zahl.(Bestätige mit einer Taste)");
+                            }
+
                         }
-                       
-                        else if (bBreite < bBreiteRip)
+                        while ((PrüfungZahl(bBreiteE) || PrüfungZahl(bBreiteRipE) || PrüfungZahl(hHöheE) || PrüfungZahl(hHöheRipE) || PrüfungZahl(lLängeE)) == false);
+                        
+                        
+                        bBreite = Convert.ToInt32(bBreiteE);
+                        hHöhe = Convert.ToInt32(hHöheE);
+                        bBreiteRip = Convert.ToInt32(bBreiteRipE);
+                        hHöheRip = Convert.ToInt32(hHöheRipE);
+                        lLänge = Convert.ToInt32(lLängeE);
+                        if (bBreite > 0 || hHöhe > 0 || bBreiteRip > 0 || hHöheRip > 0 || lLänge > 0)
                         {
-                            Console.WriteLine("Überprüfe deine Eingabe, die Rippe muss schmaler als die Gurttbreite sein, bestätige mit einer Taste");
-
+                            Console.WriteLine("Deine Eingaben müssen Größer null sein.(Bestätige mit einer Taste)");
                             Console.ReadKey();
                         }
+                        if (bBreiteRip<bBreite)
+                        {
+                            Console.WriteLine("Die Rippe muss schmaler sein als die Gesammtbreite.(Bestätige mit einer Taste)");
+                        }
 
-                        
                     }
-                    while (bBreite < bBreiteRip || bBreite <= 0 || bBreiteRip <= 0 || hHöhe <= 0 || hHöheRip <= 0 || lLänge <= 0);
+                    while (bBreite>0 || hHöhe>0 || bBreiteRip>0 || hHöheRip>0 || lLänge>0 || bBreiteRip<bBreite);                   
+                    
+
 
                     double Fläche = Rechteck(bBreite, hHöhe) + Rechteck(bBreiteRip, hHöheRip);
                     double Volumen = Fläche * lLänge;
@@ -128,12 +182,14 @@ namespace Uebung_3
                     double Iy = (IRechteck(bBreite, hHöhe) + IRechteck(bBreiteRip, hHöheRip)) /12;
                     
 
+
+
                         Console.WriteLine("Die Fläche beträgt: " + Fläche +" mm^2");
                         Console.WriteLine("Das Volumen beträgt: " + Volumen + " mm^3");
                         Console.WriteLine("Schwerpunkt in bezug auf Ecke oben links: " + SchwerpunktX + " mm" + "/" + SchwerpunktY + " mm" + "/" + SchwerpunktZ + " mm");
                         Console.WriteLine("Flächenträgheitsmomente: Iy=" + Iy+ " mm^4");
 
-                    //Komentare und weitere berechnungen folgen
+                    //Komentare und weitere Berechnungen folgen
 
 
 
@@ -170,6 +226,13 @@ namespace Uebung_3
             return I;
         }
 
+        public static bool PrüfungZahl(string Eingabe)
+        {
+            int i = 0;            
+            bool result = int.TryParse(Eingabe, out i);
+
+            return result;
+        }
 
 
 
