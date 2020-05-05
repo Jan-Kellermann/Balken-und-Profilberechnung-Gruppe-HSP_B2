@@ -20,13 +20,10 @@ namespace Uebung_3
         
         {
 
-            //Messagebox funktioniert noch nicht
+            
 
 
-
-
-
-            string message = "Wollen Sie mit der Berechnung fortfahren?";
+            string message = "Herzlich Willkommen! Möchten Sie mit den Berechnungen zu verschiedenen Profilen beginnen?";
             string title = "Frage";
             
             DialogResult result = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
@@ -38,7 +35,7 @@ namespace Uebung_3
             else
             {
 
-                //HIer wird Asuwahl getroffen wechen träger man berechnen möchte
+                //Hier wird Auswahl getroffen wechen Träger man berechnen möchte
                 string Eingabe;
                 int EingabeNeu;
                 do //Prüfung der Eingabe auf Plausbilität
@@ -61,7 +58,7 @@ namespace Uebung_3
                     }
                     while (PrüfungZahl(Eingabe) == false);
 
-                    EingabeNeu = Convert.ToInt32(Eingabe); //Eingabe ist eine Zhal und kann fehlerfrei in eine Integer convertiert werden 
+                    EingabeNeu = Convert.ToInt32(Eingabe); //Eingabe ist eine Zahl und kann fehlerfrei in ein Integer convertiert werden 
 
                     if (EingabeNeu > 6)
                     {
@@ -77,7 +74,13 @@ namespace Uebung_3
                 switch (caseSwitch)
                 {
 
-                    case 1:
+                    case 1: //Rechteck
+
+                        Console.WriteLine("  * * * * * *");
+                        Console.WriteLine("  *         *");
+                        Console.WriteLine("  *         *  b");
+                        Console.WriteLine("  * * * * * *");
+                        Console.WriteLine("       a        ");
 
                         //Schreiben Sie eine Eingabe für die Kantenlängen a und b
                         Console.WriteLine("Bitte geben Sie Kantenlänge a (Breite) in mm an");
@@ -94,11 +97,11 @@ namespace Uebung_3
 
 
                         //• Berechnen Sie die Fläche
-                        double flaeche = Rechteck(a, b);
+                        double flaeche = FlaecheRechteck(a, b);
                         Console.WriteLine("Die FLäche beträgt: " + flaeche + " qm");
 
                         //• Berechnen Sie den Flächenschwerpunkt des Profils.
-                        Console.WriteLine("Schwerpunkt in bezug auf die Obere linke Ecke: " + SRechteck(a) + "/" + SRechteck(b)); //Schwerkupnkberechnung des rechteckes
+                        Console.WriteLine("Schwerpunkt in Bezug auf die obere linke Ecke: " + SRechteck(a) + "/" + SRechteck(b)); //Schwerkupnkberechnung des rechteckes
 
                         //• Berechnen Sie die Flächenträgheitsmomente des Profils
                         double ix = IRechteck(a, b);
@@ -113,7 +116,9 @@ namespace Uebung_3
 
                         break;
 
-                    case 2:
+                        //**********************************************************************************************************************************************************************
+
+                    case 2: // T-Profil
                         Console.Clear();
                         double bBreite;
                         double bBreiteRip;
@@ -128,7 +133,7 @@ namespace Uebung_3
                         do
                         {
                             Console.Clear();
-                            do //Zahlen werden eingelesen und geprüft ob sie mit dem Datentyp und übereinstümmen und ob es sich um eine Zahl handelt 
+                            do //Zahlen werden eingelesen und geprüft ob sie mit dem Datentyp und übereinstimmen und ob es sich um eine Zahl handelt 
 
                             {
                                 Console.Clear();
@@ -193,8 +198,8 @@ namespace Uebung_3
                         while (bBreite < 0 || hHöhe < 0 || bBreiteRip < 0 || hHöheRip < 0 || lLänge < 0 || bBreiteRip > bBreite);
 
                         //Sind die Zahlen Größer Null und die Rippenbreite schmaler als Die Gutbreite wird mit den Berechnungen begonnen
-                        double RechteckGurt = Rechteck(bBreite, hHöhe);                                                                 //mehrfach wiederkehrende Unterprogrammaufrufe wurden ausgegliedert
-                        double RechteckRippe = Rechteck(bBreiteRip, hHöheRip);                                                          //mehrfach wiederkehrende Unterprogrammaufrufe wurden ausgegliedert
+                        double RechteckGurt = FlaecheRechteck(bBreite, hHöhe);                                                                 //mehrfach wiederkehrende Unterprogrammaufrufe wurden ausgegliedert
+                        double RechteckRippe = FlaecheRechteck(bBreiteRip, hHöheRip);                                                          //mehrfach wiederkehrende Unterprogrammaufrufe wurden ausgegliedert
 
                         double Fläche = RechteckGurt + RechteckRippe;                                                                   //Flächenberechnung der T-Träger wird aus zwei Rechtecken zusammengesetzt die über das Unterprogramm Rechteck() aus der Balkenberechnung
                         double Volumen = Fläche * lLänge;                                                                               // Volumen wird durch die bereits berechnete Fläche und die Trägerlänge berechnet
@@ -222,8 +227,10 @@ namespace Uebung_3
 
                         break;
 
-                    //berechnung T-Profil
+                    
 
+
+                    //***********************************************************************************************************************************************************************************
                     case 3: //Kasten
 
 
@@ -231,7 +238,7 @@ namespace Uebung_3
                         break;
 
                         
-
+                    //*******************************************************************************************************************************************************************************
 
                     case 4: //Rundprofil
                         string dDurchmesserE;
@@ -293,15 +300,86 @@ namespace Uebung_3
                        
 
                         break;
+                    //**************************************************************************************************************************************************************************************
 
                     case 5: //Rohr
 
+                        string dDurchmesserEingabeAussen;                        
+                        string dDurchmesserEingabeInnen;                        
+                        string lLängeEingabeRohr;
 
+                        double dDurchmesserAussen;
+                        double dDurchmesserInnen;
+                        double lLängeRohr;
+
+                        do
+                        {
+                            do
+                            {
+
+                                Console.Clear();
+                                Console.WriteLine("Hier kannst du ein Rundprofil berechnen (Eingaben in mm):");
+                                Console.WriteLine("        * *             ");
+                                Console.WriteLine("    *         *           ");
+                                Console.WriteLine("  *              *       ");
+                                Console.WriteLine(" *      * *       *    ");
+                                Console.WriteLine("*     *--d--*     *   D = Durchmesser Außen ");
+                                Console.WriteLine(" *      * *      *    ");
+                                Console.WriteLine("   *            *       ");
+                                Console.WriteLine("     *       *          ");
+                                Console.WriteLine("        * *           ");
+
+
+
+                                Console.WriteLine("Durchmesser D:  ");
+                                dDurchmesserEingabeAussen = Console.ReadLine();
+
+                                Console.WriteLine("Durchmesser d: ");
+                                dDurchmesserEingabeInnen = Console.ReadLine();
+
+                                Console.WriteLine("Länge l:");
+                                lLängeEingabeRohr = Console.ReadLine();
+
+
+                                if ((PrüfungZahl(dDurchmesserEingabeAussen) || PrüfungZahl(lLängeEingabeRohr) || PrüfungZahl(dDurchmesserEingabeInnen)) == false)
+                                {
+                                    Console.WriteLine("Eigabe ist keine Zahl.(Bestätige mit einer Taste)");
+                                }
+
+
+                            } while ((PrüfungZahl(dDurchmesserEingabeAussen) || PrüfungZahl(lLängeEingabeRohr) || PrüfungZahl(dDurchmesserEingabeInnen)) == false);
+
+
+                            dDurchmesserInnen = Convert.ToDouble(dDurchmesserEingabeInnen);
+                            dDurchmesserAussen = Convert.ToDouble(dDurchmesserEingabeAussen);
+                            lLängeRohr = Convert.ToDouble(lLängeEingabeRohr);
+
+                            if (dDurchmesserInnen < 0 || lLängeRohr < 0 || dDurchmesserAussen < 0)
+                            {
+                                Console.WriteLine("Deine Eingaben müssen größer null sein.(Bestätige mit einer Taste)");
+                                Console.ReadKey();
+                            }
+
+
+                        } while (dDurchmesserInnen < 0 || lLängeRohr < 0 || dDurchmesserAussen < 0);
+                                 
+
+
+                        
+                        Console.WriteLine("Kreisfläche: " + (Kreisfläche(dDurchmesserAussen) - Kreisfläche(dDurchmesserInnen)) + "mm²");
+                        Console.WriteLine("Volumen: " + (Kreisfläche(dDurchmesserAussen) - Kreisfläche(dDurchmesserInnen)) * lLängeRohr + "mm³");
+                        Console.WriteLine("Schwerpunkt XY: " + dDurchmesserAussen / 2 + "mm");
+                        Console.WriteLine("Schwerpunkt_Länge: " + lLängeRohr / 2 + "mm");
+                        Console.WriteLine("Flächenträgheitsmoment: " + IRohr(dDurchmesserAussen, dDurchmesserInnen) + "mm^4");
+
+
+
+                        Console.ReadKey();
 
                         break;
-
-
-
+                   //***********************************************************************************************************************************************************************************
+                    case 6: // I-Profil 
+                        break;
 
 
                 }
@@ -313,7 +391,12 @@ namespace Uebung_3
 
         }
 
-        public static double Rechteck(double a, double b)
+       // public static double EingangsprüfungZahlen (double a)       Hier ein Unterprogramm, gucken ob die Zahl positiv ist?
+      //  {
+            
+      //  }
+
+        public static double FlaecheRechteck(double a, double b)
         {
             double flaeche;
             flaeche = a * b;
@@ -352,6 +435,12 @@ namespace Uebung_3
             double s = d / 2;
             double A = Math.PI * Math.Pow(s, 2);
             return A;
+        }
+
+        public static double IRohr (double D, double d)
+        {
+            double I = Math.PI * (Math.Pow(D, 4) - Math.Pow(d, 4)) / 64;
+            return I;
         }
 
 
