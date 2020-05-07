@@ -295,7 +295,7 @@ namespace Uebung_3
                             Console.WriteLine("Das Flächenträgheitsmoment in x Richtung beträgt: Ix = " + Ix + " mm^4");
                             Console.WriteLine("Das Flächenträgheitsmoment in y Richtung beträgt: Iy = " + Iy + " mm^4");
 
-
+                    Console.ReadKey();
             
         
     
