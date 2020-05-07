@@ -431,7 +431,7 @@ namespace Uebung_3
                              Console.WriteLine("Der Innendurchmesser muss kleiner sein als der Außendurchmesser");
                             }
 
-                    } while (dDurchmesserInnen < 0 || lLängeRohr < 0 || dDurchmesserAussen < 0);
+                    } while (dDurchmesserInnen < 0 || lLängeRohr < 0 || dDurchmesserAussen < 0 || dDurchmesserInnen > dDurchmesserAussen);
                                  
 
 
