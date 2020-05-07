@@ -34,8 +34,8 @@ namespace Uebung_3
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine("Herzlich Willkommen zur Profilberechnung" + Environment.NewLine + Environment.NewLine +"Für die Berechnung eines einfachen Balkens 1 drücken, für einen T-Träger 2, für ein Hohlvierkant 3, für ein Rundprofil 4, für ein Rohr 5, für ein I Profil 6"
-                                            + Environment.NewLine + Environment.NewLine +"Bitte achten Sie darauf keine Sonderzeichen, sowie negative Zahlen einzugeben! Außerdem müssen Kommazahlen mit einem Punkt angegeben werden.");
+                        Console.WriteLine("Herzlich Willkommen zur Profilberechnung" + Environment.NewLine + Environment.NewLine + "Für die Berechnung eines einfachen Balkens 1 drücken, für einen T-Träger 2, für einen rechteckigen Hohlkasten 3, für ein Rundprofil 4, für ein Rohr 5, für ein I Profil 6"
+                                            + Environment.NewLine + Environment.NewLine + "! Bitte achten Sie darauf keine Sonderzeichen, sowie negative Zahlen einzugeben! Außerdem müssen Kommazahlen mit einem Punkt angegeben werden. !" + Environment.NewLine);
 
                         Eingabe = Console.ReadLine();
 
@@ -222,12 +222,12 @@ namespace Uebung_3
 
 
                     //***********************************************************************************************************************************************************************************
-                    case 3: //Hohlvierkant
+                    case 3: //rechteckiger Hohlkasten
 
                   
           
                             Console.Clear();
-                            Console.WriteLine("Hier kannst du einen Kasten berechnen(Angaben in mm)");
+                            Console.WriteLine("Hier können Sie einen rechteckigen Hohlkasten berechnen (Angaben in mm)");
                             Console.WriteLine(" A |      b      | D");
                             Console.WriteLine(" - * * * * * * * * ");
                             Console.WriteLine("   * * * * * * * *  - ");
@@ -238,17 +238,17 @@ namespace Uebung_3
                             Console.WriteLine(" - * * * * * * * *    ");
                             Console.WriteLine("  B  |    d    |   C");
 
-                            Console.WriteLine("Bitte geben sie die Kantenlänge a (Höhe) in mm an (Bestätigen mit Enter)");
+                            Console.WriteLine("Bitte geben Sie die Kantenlänge a (Höhe) in mm an (Bestätigen mit Enter)");
                             
                             eingabeA = Console.ReadLine();
                             a = Convert.ToDouble(eingabeA);
 
-                            Console.WriteLine("Bitte geben sie die Kantenlänge b (Breite) in mm an (Bestätigen mit Enter)");
+                            Console.WriteLine("Bitte geben Sie die Kantenlänge b (Breite) in mm an (Bestätigen mit Enter)");
                             
                             eingabeB = Console.ReadLine();
                             b = Convert.ToDouble(eingabeB);
 
-                            Console.WriteLine("Bitte geben sie die innere Kantenlänge c (innere Höhe) in mm an, achten sie darauf, dass c < a (Bestätigen mit Enter)");
+                            Console.WriteLine("Bitte geben Sie die innere Kantenlänge c (innere Höhe) in mm an, achten sie darauf, dass c < a (Bestätigen mit Enter)");
                             string eingabeC;
                             eingabeC = Console.ReadLine();
                             double c;
@@ -256,13 +256,13 @@ namespace Uebung_3
 
 
 
-                            Console.WriteLine("Bitte geben sie die innere Kantenlänge d (innere Breite) in mm an, achten sie darauf, dass d < b (Bestätigen mit Enter)");
+                            Console.WriteLine("Bitte geben Sie die innere Kantenlänge d (innere Breite) in mm an, achten sie darauf, dass d < b (Bestätigen mit Enter)");
                             string eingabeD;
                             eingabeD = Console.ReadLine();
                             double d;
                             d = Convert.ToDouble(eingabeD);
 
-                            Console.WriteLine("Bitte geben sie die Kantenlänge l (dreidimensionale Länge) in mm an (Bestätigen mit Enter)");
+                            Console.WriteLine("Bitte geben Sie die Kantenlänge l (dreidimensionale Länge) in mm an (Bestätigen mit Enter)");
                             string eingabeL;
                             eingabeL = Console.ReadLine();
                             double l;
@@ -276,11 +276,11 @@ namespace Uebung_3
                             flaeche2 = c * d;
 
                             flaeche = flaeche1 - flaeche2;
-                            Console.WriteLine("Die Fläche des Kastens beträgt: " + flaeche + " ");
+                            Console.WriteLine("Die Fläche des Kastens beträgt: " + flaeche + " mm^2");
 
                             double volumen;
                             volumen = flaeche * l;
-                            Console.WriteLine("Das Volumen des Kastens beträgt: " + volumen + " ");
+                            Console.WriteLine("Das Volumen des Kastens beträgt: " + volumen + " mm^3");
 
                             double schwerpunkta;
                             schwerpunkta = a / 2;
@@ -292,8 +292,8 @@ namespace Uebung_3
 
                             Ix = (b * a * a * a - d * c * c * c) / 12;
                             Iy = (a * b * b * b - c * d * d * d) / 12;
-                            Console.WriteLine("Das Flächenträgheitsmoment in x Richtung beträgt: Ix = " + Ix + " ");
-                            Console.WriteLine("Das Flächenträgheitsmoment in y Richtung beträgt: Iy = " + Iy + " ");
+                            Console.WriteLine("Das Flächenträgheitsmoment in x Richtung beträgt: Ix = " + Ix + " mm^4");
+                            Console.WriteLine("Das Flächenträgheitsmoment in y Richtung beträgt: Iy = " + Iy + " mm^4");
 
 
             
@@ -400,7 +400,7 @@ namespace Uebung_3
                                 Console.WriteLine("Durchmesser D:  ");
                                 dDurchmesserEingabeAussen = Console.ReadLine();
 
-                                Console.WriteLine("Durchmesser d: ");
+                                Console.WriteLine("Durchmesser d: (Durchmesser d muss kleiner sein als D");
                                 dDurchmesserEingabeInnen = Console.ReadLine();
 
                                 Console.WriteLine("Länge l:");
