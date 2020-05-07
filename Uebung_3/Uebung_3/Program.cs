@@ -400,7 +400,7 @@ namespace Uebung_3
                                 Console.WriteLine("Durchmesser D:  ");
                                 dDurchmesserEingabeAussen = Console.ReadLine();
 
-                                Console.WriteLine("Durchmesser d: (Durchmesser d muss kleiner sein als D");
+                                Console.WriteLine("Durchmesser d: (Durchmesser d muss kleiner sein als D) ");
                                 dDurchmesserEingabeInnen = Console.ReadLine();
 
                                 Console.WriteLine("Länge l:");
