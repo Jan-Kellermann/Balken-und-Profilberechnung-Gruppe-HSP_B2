@@ -215,7 +215,7 @@ namespace Uebung_3
 
                         Console.ReadKey();
 
-                        break;
+                    break;
 
                     
 
@@ -223,9 +223,84 @@ namespace Uebung_3
                     //***********************************************************************************************************************************************************************************
                     case 3: //Hohlvierkant
 
+                  
+          
+                            Console.Clear();
+                            Console.WriteLine("Hier kannst du einen Kasten berechnen(Angaben in mm)");
+                            Console.WriteLine(" A |      b      | D");
+                            Console.WriteLine(" - * * * * * * * * ");
+                            Console.WriteLine("   * * * * * * * *  - ");
+                            Console.WriteLine(" a * *         * *     ");
+                            Console.WriteLine("   * *         * *  c  ");
+                            Console.WriteLine("   * *         * *     ");
+                            Console.WriteLine("   * * * * * * * *  -     ");
+                            Console.WriteLine(" - * * * * * * * *    ");
+                            Console.WriteLine("  B  |    d    |   C");
+
+                            Console.WriteLine("Bitte geben sie die Kantenlänge a (Höhe) in mm an (Bestätigen mit Enter)");
+                            
+                            eingabeA = Console.ReadLine();
+                            a = Convert.ToDouble(eingabeA);
+
+                            Console.WriteLine("Bitte geben sie die Kantenlänge b (Breite) in mm an (Bestätigen mit Enter)");
+                            
+                            eingabeB = Console.ReadLine();
+                            b = Convert.ToDouble(eingabeB);
+
+                            Console.WriteLine("Bitte geben sie die innere Kantenlänge c (innere Höhe) in mm an, achten sie darauf, dass c < a (Bestätigen mit Enter)");
+                            string eingabeC;
+                            eingabeC = Console.ReadLine();
+                            double c;
+                            c = Convert.ToDouble(eingabeC);
 
 
-                        break;
+
+                            Console.WriteLine("Bitte geben sie die innere Kantenlänge d (innere Breite) in mm an, achten sie darauf, dass d < b (Bestätigen mit Enter)");
+                            string eingabeD;
+                            eingabeD = Console.ReadLine();
+                            double d;
+                            d = Convert.ToDouble(eingabeD);
+
+                            Console.WriteLine("Bitte geben sie die Kantenlänge l (dreidimensionale Länge) in mm an (Bestätigen mit Enter)");
+                            string eingabeL;
+                            eingabeL = Console.ReadLine();
+                            double l;
+                            l = Convert.ToDouble(eingabeL);
+
+
+                            double flaeche1;
+                            flaeche1 = a * b;
+
+                            double flaeche2;
+                            flaeche2 = c * d;
+
+                            flaeche = flaeche1 - flaeche2;
+                            Console.WriteLine("Die Fläche des Kastens beträgt: " + flaeche + " ");
+
+                            double volumen;
+                            volumen = flaeche * l;
+                            Console.WriteLine("Das Volumen des Kastens beträgt: " + volumen + " ");
+
+                            double schwerpunkta;
+                            schwerpunkta = a / 2;
+
+                            double schwerpunktb;
+                            schwerpunktb = b / 2;
+                            Console.WriteLine("Der Schwerpunkt des Kastens befindet, wenn man für Punkt A (0/0) ausgeht bei: S(" + schwerpunktb + "/" + schwerpunkta + ") ");
+
+
+                            Ix = (b * a * a * a - d * c * c * c) / 12;
+                            Iy = (a * b * b * b - c * d * d * d) / 12;
+                            Console.WriteLine("Das Flächenträgheitsmoment in x Richtung beträgt: Ix = " + Ix + " ");
+                            Console.WriteLine("Das Flächenträgheitsmoment in y Richtung beträgt: Iy = " + Iy + " ");
+
+
+            
+        
+    
+
+
+                    break;
 
                         
                     //*******************************************************************************************************************************************************************************
@@ -351,7 +426,12 @@ namespace Uebung_3
                             }
 
 
-                        } while (dDurchmesserInnen < 0 || lLängeRohr < 0 || dDurchmesserAussen < 0);
+                            if (dDurchmesserInnen > dDurchmesserAussen)
+                            {
+                             Console.WriteLine("Der Innendurchmesser muss kleiner sein als der Außendurchmesser");
+                            }
+
+                    } while (dDurchmesserInnen < 0 || lLängeRohr < 0 || dDurchmesserAussen < 0);
                                  
 
 
