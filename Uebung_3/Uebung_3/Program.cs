@@ -34,7 +34,8 @@ namespace Uebung_3
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine("Herzlich Willkommen zur Profilberechnung" + Environment.NewLine + Environment.NewLine +"Für die Berechnung eines einfachen Balkens 1 drücken, für einen T-Träger 2, für ein Hohlvierkant 3, für ein Rundprofil 4, für ein Rohr 5, für ein I Profil 6");
+                        Console.WriteLine("Herzlich Willkommen zur Profilberechnung" + Environment.NewLine + Environment.NewLine +"Für die Berechnung eines einfachen Balkens 1 drücken, für einen T-Träger 2, für ein Hohlvierkant 3, für ein Rundprofil 4, für ein Rohr 5, für ein I Profil 6"
+                                            + Environment.NewLine + Environment.NewLine +"Bitte achten Sie darauf keine Sonderzeichen, sowie negative Zahlen einzugeben! Außerdem müssen Kommazahlen mit einem Punkt angegeben werden.");
 
                         Eingabe = Console.ReadLine();
 
